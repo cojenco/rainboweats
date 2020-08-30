@@ -27,7 +27,54 @@
     <title>React App</title>
   </head>
   <body>
+    <!-- CDN -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+    
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyCPUxXrRR6ZdlRK1GHIrboFFWVu3VVOUwA",
+        authDomain: "keen-boulder-286521.firebaseapp.com",
+        databaseURL: "https://keen-boulder-286521.firebaseio.com",
+        projectId: "keen-boulder-286521",
+        storageBucket: "keen-boulder-286521.appspot.com",
+        messagingSenderId: "745284270797",
+        appId: "1:745284270797:web:fefc690c0470a662550784",
+        measurementId: "G-ZVCN44M5GN"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+    <!-- CDN -->
+
+    <!-- Hosting URLs -->
+
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+  
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <!-- <script src="/__/firebase/7.19.1/firebase-app.js"></script> -->
+  
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <!-- <script src="/__/firebase/7.19.1/firebase-analytics.js"></script> -->
+  
+    <!-- Add Firebase products that you want to use -->
+    <!-- <script src="/__/firebase/7.19.1/firebase-auth.js"></script> -->
+    <!-- <script src="/__/firebase/7.19.1/firebase-firestore.js"></script> -->
+
+    <!-- Initialize Firebase -->
+    <!-- <script src="/__/firebase/init.js"></script> -->
+    <!-- Hosting URLS -->
+
     <noscript>You need to enable JavaScript to run this app.</noscript>
+
     <div id="root"></div>
     <!--
       This HTML file is a template.
