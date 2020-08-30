@@ -17,13 +17,55 @@ function App() {
     measurementId: "G-ZVCN44M5GN"
   };
 
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
+  // Initialize Firebase and avoid duplicates
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  }
+
+  // uID state to store uID
+  const [uID, setuID] = useState('')
+
+  var provider = new firebase.auth.GoogleAuthProvider();
+  firebase.auth().signInWithPopup(provider).then(function(result) {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    var token = result.credential.accessToken;
+    console.log(token);
+    // The signed-in user info.
+    var user = result.user;
+    console.log(user);
+    console.log(user.l);
+    console.log(result.additionalUserInfo.profile)
+    console.log(result.additionalUserInfo.profile.id)
+    setuID(result.additionalUserInfo.profile.id)
+    // do something else
+    // call a cloud function to save new user document
+    // use uID stored in state to upload image
+  }).catch(function(error) {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    var email = error.email;
+    var credential = error.credential;
+  });
+
+  
+  return (
+    <div className="App">
+
+      <h1>Eat a Rainbow!</h1>
+      <p>uID is {uID} </p>
+      <Upload />
+
+    </div>
+  );
+}
+
+export default App;
+
+
 
   ////// Initialize the FirebaseUI Widget using Firebase. //////
   // var ui = new firebaseui.auth.AuthUI(firebase.auth());
-
   // var uiConfig = {
   //   callbacks: {
   //     signInSuccessWithAuthResult: function(authResult, redirectUrl) {
@@ -56,44 +98,5 @@ function App() {
   // ui.start('#firebaseui-auth-container', uiConfig);
   ////// Initialize the FirebaseUI Widget using Firebase. //////
 
-  var provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithPopup(provider).then(function(result) {
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    var token = result.credential.accessToken;
-    console.log(token);
-    // The signed-in user info.
-    var user = result.user;
-    console.log(user);
-    console.log(user.l);
-    console.log(result.additionalUserInfo.profile)
-    console.log(result.additionalUserInfo.profile.id)
-    // do something else
-    // store the uID in state?
-    // call a cloud function to save new user document
-  }).catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // The email of the user's account used.
-    var email = error.email;
-    // The firebase.auth.AuthCredential type that was used.
-    var credential = error.credential;
-    // ...
-  });
-
-  
-  return (
-    <div className="App">
-
-      <h1>Eat a Rainbow!</h1>
-      {/* <div id="firebaseui-auth-container"></div>
-      <div id="loader">Loading...</div> */}
-
-      {/* <div> {provider} </div> */}
-
-      <Upload />
-    </div>
-  );
-}
-
-export default App;
+  // <div id="firebaseui-auth-container"></div>
+  // <div id="loader">Loading...</div> 
