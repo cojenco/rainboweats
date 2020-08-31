@@ -24,19 +24,21 @@ function Upload2 (props) {
     const reader = new FileReader();
     console.log('this is file');
     console.log(file);
-  
-    const data = reader.readAsArrayBuffer(file);
-    console.log('this is data');
-    console.log(data);
 
-        // const data = reader.readAsDataURL(file);
-        // const data = reader.readAsArrayBuffer(file);
-        // console.log(data);
-        // https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsDataURL
-        // The blob's result cannot be directly decoded as Base64 without first removing the Data-URL declaration preceding the Base64-encoded data. To retrieve only the Base64 encoded string, first remove data:*/*;base64, from the result.
-        // call cloud function 
+    reader.onload = function(e) {
+      console.log(e.target);
+      console.log('e.target.result');
+      console.log(e.target.result);
+    }
   
-      // do something: make an http call to the uploadfile function I wrote
+    const data = reader.readAsDataURL(file);
+    // const data = reader.readAsArrayBuffer(file);
+
+    // https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsDataURL
+    // The blob's result cannot be directly decoded as Base64 without first removing the Data-URL declaration preceding the Base64-encoded data. To retrieve only the Base64 encoded string, first remove data:*/*;base64, from the result.
+    // call cloud function 
+  
+    // do something: make an http call to the uploadfile function I wrote
     }
 
   
