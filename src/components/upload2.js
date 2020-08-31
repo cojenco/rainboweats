@@ -31,8 +31,11 @@ function Upload2 (props) {
       console.log(e.target.result);
     }
   
-    const data = reader.readAsDataURL(file);
-    // const data = reader.readAsArrayBuffer(file);
+    // const data = reader.readAsDataURL(file);
+    const data = reader.readAsArrayBuffer(file);
+    const uint8View = new Uint8Array(data);
+    console.log('uint8View');
+    console.log(uint8View);
 
     // https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsDataURL
     // The blob's result cannot be directly decoded as Base64 without first removing the Data-URL declaration preceding the Base64-encoded data. To retrieve only the Base64 encoded string, first remove data:*/*;base64, from the result.
