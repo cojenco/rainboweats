@@ -55,7 +55,7 @@ function App() {
 
       <h1>Eat a Rainbow!</h1>
       <p>uID is {uID} </p>
-      <Upload2 />
+      <Upload2 uID={uID} />
 
     </div>
   );

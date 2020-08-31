@@ -1,7 +1,8 @@
 import React from 'react';
+import axios from 'axios';
 
 
-function Upload2 (props) {
+function Upload2 ({uID}) {
 
   function previewFile() {
     const preview = document.querySelector('img');
@@ -31,11 +32,25 @@ function Upload2 (props) {
       console.log(e.target.result);
     }
   
-    // const data = reader.readAsDataURL(file);
-    const data = reader.readAsArrayBuffer(file);
-    const uint8View = new Uint8Array(data);
+    const data = reader.readAsDataURL(file);
+    // const data = reader.readAsArrayBuffer(file);
+    const uint8View = new Uint8Array(file);
     console.log('uint8View');
     console.log(uint8View);
+    const params = {
+      'uID': uID,
+      'file': uint8View,
+    };
+    console.log(params);
+
+    axios
+    .post('https://us-central1-keen-boulder-286521.cloudfunctions.net/testNode1', params)
+    .then((response) => {
+      console.log(response.data);
+    })
+    .catch((error) => {
+      console.log(error.message);
+    });
 
     // https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsDataURL
     // The blob's result cannot be directly decoded as Base64 without first removing the Data-URL declaration preceding the Base64-encoded data. To retrieve only the Base64 encoded string, first remove data:*/*;base64, from the result.
