@@ -3,6 +3,8 @@ import axios from 'axios';
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 function Upload2 ({uID}) {
+  const timestamp = Date.now();
+  console.log (`this is timestamp ${timestamp}`);
 
   const onUploadClick = (event) => {
     const preview = document.querySelector('img');
@@ -20,12 +22,11 @@ function Upload2 ({uID}) {
       const params = {
         'uID': uID,
         'file': fileInput,
-        'imageName': file.name,
+        'imageName': `${timestamp}.jpg`,
       };
       console.log(params);
 
       axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-
       axios
       .post('https://us-central1-keen-boulder-286521.cloudfunctions.net/testNode1', params)
       .then((response) => {
