@@ -1,23 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 function Upload2 ({uID}) {
-
-  function previewFile() {
-    const preview = document.querySelector('img');
-    const file = document.querySelector('input[type=file]').files[0];
-    const reader = new FileReader();
-  
-    reader.addEventListener("load", function () {
-      // convert image file to base64 string
-      preview.src = reader.result;
-    }, false);
-  
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  }
 
   const onUploadClick = (event) => {
     const preview = document.querySelector('img');
@@ -25,11 +10,30 @@ function Upload2 ({uID}) {
     const reader = new FileReader();
     console.log('this is file');
     console.log(file);
+    console.log(file.name);
 
     reader.onload = function(e) {
       console.log(e.target);
       console.log('e.target.result');
       console.log(e.target.result);
+      const fileInput = e.target.result.split(',')[1];
+      const params = {
+        'uID': uID,
+        'file': fileInput,
+        'imageName': file.name,
+      };
+      console.log(params);
+
+      axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
+      axios
+      .post('https://us-central1-keen-boulder-286521.cloudfunctions.net/testNode1', params)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
     }
   
     const data = reader.readAsDataURL(file);
@@ -37,33 +41,13 @@ function Upload2 ({uID}) {
     const uint8View = new Uint8Array(file);
     console.log('uint8View');
     console.log(uint8View);
-    const params = {
-      'uID': uID,
-      'file': uint8View,
-    };
-    console.log(params);
-
-    axios
-    .post('https://us-central1-keen-boulder-286521.cloudfunctions.net/testNode1', params)
-    .then((response) => {
-      console.log(response.data);
-    })
-    .catch((error) => {
-      console.log(error.message);
-    });
-
-    // https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsDataURL
-    // The blob's result cannot be directly decoded as Base64 without first removing the Data-URL declaration preceding the Base64-encoded data. To retrieve only the Base64 encoded string, first remove data:*/*;base64, from the result.
-    // call cloud function 
-  
-    // do something: make an http call to the uploadfile function I wrote
     }
 
   
   return (
     <section className="container">
-      <input type="file" onchange="previewFile()"></input>
-      <img src="" height="200" alt="Image preview..."/>
+      <input type="file"></input>
+      
       <button onClick={onUploadClick} > UPLOAD </button>
     </section>
   );
