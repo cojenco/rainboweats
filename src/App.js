@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import Upload from './components/upload'
 import Upload2 from './components/upload2'
+import Summary from './components/summary'
 var firebase = require('firebase');
 var firebaseui = require('firebaseui');
 
@@ -55,7 +56,10 @@ function App() {
 
       <h1>Eat a Rainbow!</h1>
       <p>uID is {uID} </p>
+
       <Upload2 uID={uID} />
+
+      <Summary uID={uID} />
 
     </div>
   );
