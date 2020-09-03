@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import Color from './color';
-// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 const Summary = ({uID}) => {
   const timestamp = Date.now();
@@ -13,10 +13,9 @@ const Summary = ({uID}) => {
     const params = {
       'message': uID
     };
-    console.log(params);
-    // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
     axios
-    .get('https://us-central1-keen-boulder-286521.cloudfunctions.net/callWeeklyColors')
+    .get(`https://us-central1-keen-boulder-286521.cloudfunctions.net/callWeeklyColors?message=${uID}`)
     .then((response) => {
       console.log(response.data);
       setWeekly(response.data.colors);
