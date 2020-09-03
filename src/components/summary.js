@@ -25,7 +25,8 @@ const Summary = ({uID}) => {
     });
   }
 
-  const allColorsResults = weekly.map((color) => {
+  let allColorsResults = weekly.sort((a, b) => b.red - a.red || a.green - b.green);
+  allColorsResults = weekly.map((color) => {
     const key = Date.now();
     return (
       <Color key={key} red={color.red} green={color.green} blue={color.blue} fraction={color.pixel_fraction} />
