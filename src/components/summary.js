@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import Color from './color';
+import { PieChart } from 'react-minimal-pie-chart';
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 const Summary = ({uID}) => {
   const timestamp = Date.now();
   const [weekly, setWeekly] = useState([]);
+  const [chart, setChart] = useState(false);
 
 
   const onSummaryClick = (event) => {
@@ -23,6 +25,8 @@ const Summary = ({uID}) => {
     .catch((error) => {
       console.log(error.message);
     });
+
+    setChart(true);
   }
 
   let allColorsResults = weekly.sort((a, b) => b.red - a.red || a.green - b.green);
@@ -92,13 +96,44 @@ const Summary = ({uID}) => {
   console.log('color groups');
   console.log(groups);
 
+  const data = [
+    { title: 'Red & Pink', value: groups.redPink, color: '#ff6f57' },
+    { title: 'Orange & Yellow', value: groups.orangeYellow, color: '#FDD218' },
+    { title: 'GREEN', value: groups.greenish, color: '#A7D13C' },
+    { title: 'BLUE & PURPLE', value: groups.bluePurple, color: '#b367b1' },
+  ]
+
     
   return (
     <section className="container">
       <h3> Summary </h3>
       <button onClick={onSummaryClick} > Get Summary </button>
 
-      <section className="d-flex flex-wrap"> {allColorsResults} </section>
+      {chart ? 
+      <section className="w-50 container align-self-center justify-content-center align-items-center">
+        <PieChart
+          data={data}
+          animate={true}
+          animationDuration={500}
+          animationEasing="ease-out"
+          center={[50, 50]}
+          labelPosition={65}
+          lengthAngle={360}
+          lineWidth={65}
+          paddingAngle={0}
+          radius={50}
+          startAngle={0}
+          viewBoxSize={[100, 100]}
+          label={({ dataEntry }) => `${Math.round(dataEntry.percentage)} %`}
+          labelStyle={{
+            fontSize: "0.2rem",
+            fontColor: "#FFFFFF",
+          }}
+        />;
+      </section> : "" }
+
+
+      {/* <section className="d-flex flex-wrap"> {allColorsResults} </section> */}
     </section>
   );
 }
