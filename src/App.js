@@ -27,6 +27,7 @@ function App() {
 
   // uID state to store uID
   const [uID, setuID] = useState('')
+  const [username, setUsername] = useState('')
 
   var provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider).then(function(result) {
@@ -40,6 +41,7 @@ function App() {
     console.log(result.additionalUserInfo.profile)
     console.log(result.additionalUserInfo.profile.id)
     setuID(result.additionalUserInfo.profile.id)
+    setUsername(result.additionalUserInfo.profile.given_name)
     // do something else
     // call a cloud function to save new user document
     // use uID stored in state to upload image
@@ -55,6 +57,7 @@ function App() {
     <div className="App">
 
       <h1>Eat a Rainbow!</h1>
+      <p>Hi {username}! </p>
       <p>uID is {uID} </p>
 
       <Upload2 uID={uID} />
