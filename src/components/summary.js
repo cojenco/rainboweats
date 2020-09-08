@@ -106,6 +106,8 @@ const Summary = ({uID}) => {
   // FIND color category with least consumption, and this is the color to recommend more bites
   const minColor = Object.keys(groups).reduce((a, b) => groups[a] < groups[b] ? a : b);
   console.log(minColor);
+
+  const moreFood = COLORFOODS[minColor];
  
 
 
@@ -134,7 +136,10 @@ const Summary = ({uID}) => {
             fontSize: "0.2rem",
             fontColor: "#FFFFFF",
           }}
-        />;
+        />
+
+        <p>Recommend to eat more of {minColor}</p>
+        <p>{moreFood}</p>
       </section> : "" }
 
 
@@ -144,3 +149,10 @@ const Summary = ({uID}) => {
 }
 
 export default Summary;
+
+
+const COLORFOODS = {
+  'greenish': 'asparagus, avocados, broccoli, celery, green peppers, kale, kiwi, peas, spinach, zucchini',
+  // 'greenish': ['asparagus', 'avocados', 'broccoli', 'celery', 'green peppers', 'kale', 'kiwi', 'peas', 'spinach', 'zucchini'],
+  'bluePurple': ['blackberries', 'blueberries', 'eggplant', 'grapes', 'plums', 'purple onions', 'red cabbage', 'red onions']
+}
