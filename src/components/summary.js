@@ -103,7 +103,12 @@ const Summary = ({uID}) => {
     { title: 'BLUE & PURPLE', value: groups.bluePurple, color: '#b367b1' },
   ]
 
-    
+  // FIND color category with least consumption, and this is the color to recommend more bites
+  const minColor = Object.keys(groups).reduce((a, b) => groups[a] < groups[b] ? a : b);
+  console.log(minColor);
+ 
+
+
   return (
     <section className="container">
       <h3> Summary </h3>
@@ -139,18 +144,3 @@ const Summary = ({uID}) => {
 }
 
 export default Summary;
-
-  // CATEGORIZING COLORS into Red & Pink, Orange& Yellow, Green, Blue& Purple
-  // CATEGORIZING COLORS BASED ON HUE (their position in the color wheel)
-  // redish = 0-30 / 330-360
-  // orange = 30 - 60
-  // yellow = 60 - 120
-  // greenish = 120 - 180
-  // blueish =  180 -240
-  // indigo = 240 - 270
-  // violet = 270 - 330
-
-  // red & pink: 0-30 / 300-360
-  // orange & yellow: 30 - 120
-  // green: 120 - 210
-  // blue & purple: 210 - 300
