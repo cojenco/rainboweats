@@ -63,11 +63,14 @@ function App() {
       <h1>Eat a Rainbow</h1>
       <p>Hi {username}! </p>
       {/* <p>uID is {uID} </p> */}
-      <h3> Add color! Upload an image of your meal </h3>
-      <Upload2 uID={uID} />
-
-      <h3> Have you been eating colorfully in the past 7 days? </h3>
-      <Summary uID={uID} />
+      <div class="row justify-content-center mt-5">
+        <div class="col-2"> <h3> Add color </h3> </div>
+        <div class="col-6"><Upload2 uID={uID} /></div>
+      </div>
+      <div class="row justify-content-center my-5">
+      <div class="col-2"> <h3> Get summary </h3> </div>
+      <div class="col-6"> <span className="summary-line">Have you been eating colorfully in the past 7 days? </span><Summary uID={uID} /> </div>
+      </div>
 
     </div>
   );

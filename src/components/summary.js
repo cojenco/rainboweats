@@ -116,7 +116,7 @@ const Summary = ({uID}) => {
   return (
     <section className="container">
       {/* <h3> Have you been eating colorfully in the past 7 days? </h3> */}
-      <button onClick={onSummaryClick} > Get Summary </button>
+      <button onClick={onSummaryClick} className="btn btn-info btn-block"> SUMMARY </button>
 
       {chart ? 
       <div>

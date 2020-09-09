@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import './upload2.css';
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 function Upload2 ({uID}) {
@@ -47,9 +48,12 @@ function Upload2 ({uID}) {
   
   return (
     <section className="container">
-      <input type="file"></input>
+      <label class="btn btn-outline-info btn-block upload-label-tag">
+        <span>Upload an image of your meal </span>
+        <input type="file" className="upload-input-tag"></input>
+      </label>
       
-      <button onClick={onUploadClick} > UPLOAD </button>
+      <button onClick={onUploadClick} className="btn btn-info btn-block"> UPLOAD </button>
     </section>
   );
 }
