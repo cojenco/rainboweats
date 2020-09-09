@@ -56,20 +56,21 @@ function App() {
   return (
     <div className="App">
       <img 
-        src="https://lh3.googleusercontent.com/_zHMRHWni-KlGvwhnQJKKF_bR5vKLxWUAmH3Qk5IzGkRdVlal0aMDOLpDg5arASfaAEJGCVUHuNNLRCUeoTdnISHj9IoC1e2W0cFm0W74dmqAA4GKVL_9jwvYTedOCJAoGqMnxADAPJ_kfNTciyuKFf9nvy5geY3LS9HWzdBAnyX2AhSrwZDzCcMeTH9ya1Q1wSnR70gMbqeAI5xk5fJS_xiuwN-X4qxrNgyLLf2kDcVrA7XvU_00BpqzyelpmG8S6BGjzaajLmFaxhU86cvFCgHR2g7Kl2yD3e42jklTJrtJ1LC_tsPQI1gde19vthKP6AXWJP1Ui8STYLHozfFe9DENyP64UGcj7IaZDbSrFGZM0WfvVrQtbQf-RMH35kLDlHkkoOW5JNGeEypW-MNv4HBl4WwwuI3h8gKNSKHGdsSHyxB4eelWPTAEcfAOtszWeO1z4QqCDYAzqFRyksInPGaa5cM32517ljM4C3Pj-Wa5e4KdGIFxbIZycjTCoTZAjnkcyGEV4z0JLocn_iTZY_RqnAIkyoA4UvVqQdV6Me_WduB9ki1b3mkd5dwnQGinX8hy7ZQZNIM7jjwn315aziRRjYrp7fGvhq62Y4FfET0dc1sq6y3-2m2FZ-JTwtjlynwiJPVmzRlVfMJsl4IU4GfAu43OW2gfz_LpbseYQ-4BvGQ8CsORyPOqOuB0w=w780-h521-no?authuser=0" 
+        // src="rainbow-food.jpg" 
+        src="https://lh3.googleusercontent.com/lOO6fNTGSvuaxzss_51bEQH9lyiHLYTFT0MtaiZeGpPL-dcWrV--0grms_BRjDcpgi9YHqh3F8jRSxn-s7SusvtHKqa1G7I4UbaDrjCFz5s9gDsuu9_3W-gicCICOYB-bBSoXReSMShyFMpdQLyEe5XZFkNOpQaHrEuY51jW7eJYLPFOb2OnIJgvN1DVekKDAm8qjj5SyDaiDVrXTMuCVpWUVUvqcL10FqTzcLm5YSip2GEHttSAZAgrkTpzRC9fmtyo5AfdAdBdqPSzGX30ZlyReutTCx2a7880yp3dDXo-kdPLG2hncJ4FsuoegMWXXVk5u3zVgFV6GSl_nt-OhgsKkRexENHBqTreRQ72k_PQ2dpzAW5_0geOoSlcUqMY3o2Nor84qwyo3jvOegL8MSLJ81xGDMUy33_z7uCbXCxro_dPDT9VQnG7AbbGbA_OObaW3BjAQpfKYBtzh2WD3ZPlHCF-sneei37sOk6pce112WqHL6QOCjHwjAyoLII6fG48uZUn45VCiw8TID0H333DpVdMKPfi0sWW0yPbVtzakAS51YtH0_uw9l_hZG19wvZMtA_uXN8gu45KJvghoOZZoyXMQIPNPb5eaOLtDmiS4Qulc46d1haf5cOAq9VnHzS9pvPAx2w1odz-QjQ2MZ5K95xSPF_UGjUjCTJnB2Dh8FWa-M5ztE60GpBxKw=w780-h521-no?authuser=0" 
         alt="a rainbow of veggies and fruit authorized by Happy Healthy Couple"
         className="w-50">
       </img>
       <h1>Eat a Rainbow</h1>
-      <p>Hi {username}! </p>
+      <p className="blue-font">Hi {username}! </p>
       {/* <p>uID is {uID} </p> */}
-      <div class="row justify-content-center mt-5">
-        <div class="col-2"> <h3> Add color </h3> </div>
-        <div class="col-6"><Upload2 uID={uID} /></div>
+      <div className="d-flex flex-column justify-content-center flex-wrap my-5">
+        <div className="h-25 add-topic"> <h3> Add <br></br> color </h3> </div>
+        <div className="h-25"><Upload2 uID={uID} /></div>
       </div>
-      <div class="row justify-content-center my-5">
-      <div class="col-2"> <h3> Get summary </h3> </div>
-      <div class="col-6"> <span className="summary-line">Have you been eating colorfully in the past 7 days? </span><Summary uID={uID} /> </div>
+      <div className="d-flex flex-column justify-content-center flex-wrap my-5">
+        <div className="h-25"> <h3> Get <br></br> summary </h3> </div>
+        <div className="h-75"> <span className="summary-line">Have you been eating colorfully in the past 7 days? </span><Summary uID={uID} /> </div>
       </div>
 
     </div>

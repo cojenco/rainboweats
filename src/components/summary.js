@@ -98,8 +98,8 @@ const Summary = ({uID}) => {
   console.log(groups);
 
   const data = [
-    { title: 'Red & Pink', value: groups.redPink, color: '#ff6f57' },
-    { title: 'Orange & Yellow', value: groups.orangeYellow, color: '#FDD218' },
+    { title: 'RED & PINK', value: groups.redPink, color: '#ff6f57' },
+    { title: 'ORANGE & YELLOW', value: groups.orangeYellow, color: '#FDD218' },
     { title: 'GREEN', value: groups.greenish, color: '#A7D13C' },
     { title: 'BLUE & PURPLE', value: groups.bluePurple, color: '#b367b1' },
   ]
@@ -121,7 +121,7 @@ const Summary = ({uID}) => {
 
       {chart ? 
       <div>
-        <section className="w-100 container align-self-center justify-content-center align-items-center my-5">
+        <section className="w-50 container align-self-center justify-content-center align-items-center my-5">
           <PieChart
             data={data}
             animate={true}
@@ -145,7 +145,7 @@ const Summary = ({uID}) => {
         <section className="recommend-box my-5" >  
           <h3>Add more {minColor.title} to your plate!</h3>
           <h4>{moreFood}</h4>
-          <h5>The best way to get more vitamins, minerals and nutrients is to eat a variety of colorful fruits and veggies.</h5>      
+          <h5 className="blue-font">The best way to get more vitamins, minerals and nutrients is to eat a variety of colorful fruits and veggies.</h5>      
         </section>
       </div>
 
@@ -161,10 +161,8 @@ export default Summary;
 
 
 const COLORFOODS = {
-  'Red & Pink': 'apples, beets, cherries, grapefruit, pomegranates, red radishes, red peppers, tomatoes',
-  'Orange & Yellow': 'apricots, carrots, corn, lemons, oranges, pumpkins, squash, tangerines, yams',
+  'RED & PINK': 'apples, beets, cherries, grapefruit, pomegranates, red radishes, red peppers, tomatoes',
+  'ORANGE & YELLOW': 'apricots, carrots, corn, lemons, oranges, pumpkins, squash, tangerines, yams',
   'GREEN': 'asparagus, avocados, broccoli, celery, green peppers, kale, kiwi, peas, spinach, zucchini',
   'BLUE & PURPLE': 'blackberries, blueberries, eggplant, grapes, plums, purple onions, red cabbage, red onions',
-  // 'greenish': ['asparagus', 'avocados', 'broccoli', 'celery', 'green peppers', 'kale', 'kiwi', 'peas', 'spinach', 'zucchini'],
-  // 'bluePurple': ['blackberries', 'blueberries', 'eggplant', 'grapes', 'plums', 'purple onions', 'red cabbage', 'red onions']
 }
