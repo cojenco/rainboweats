@@ -115,7 +115,7 @@ const Summary = ({uID}) => {
 
   return (
     <section className="container">
-      <h3> Have you been eating colorfully in the past 7 days? </h3>
+      {/* <h3> Have you been eating colorfully in the past 7 days? </h3> */}
       <button onClick={onSummaryClick} > Get Summary </button>
 
       {chart ? 
@@ -144,7 +144,7 @@ const Summary = ({uID}) => {
         <section className="recommend-box" >  
           <h3>Add more {minColor.title} to your plate!</h3>
           <h4>{moreFood}</h4>
-          <h5>The best way to get more vitamins, minerals and nutrients you need is to eat a variety of colorful fruits and veggies.</h5>      
+          <h5>The best way to get more vitamins, minerals and nutrients is to eat a variety of colorful fruits and veggies.</h5>      
         </section>
       </div>
 

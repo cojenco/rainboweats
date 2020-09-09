@@ -55,13 +55,18 @@ function App() {
   
   return (
     <div className="App">
-
-      <h1>Eat a Rainbow!</h1>
+      <img 
+        src="https://lh3.googleusercontent.com/_zHMRHWni-KlGvwhnQJKKF_bR5vKLxWUAmH3Qk5IzGkRdVlal0aMDOLpDg5arASfaAEJGCVUHuNNLRCUeoTdnISHj9IoC1e2W0cFm0W74dmqAA4GKVL_9jwvYTedOCJAoGqMnxADAPJ_kfNTciyuKFf9nvy5geY3LS9HWzdBAnyX2AhSrwZDzCcMeTH9ya1Q1wSnR70gMbqeAI5xk5fJS_xiuwN-X4qxrNgyLLf2kDcVrA7XvU_00BpqzyelpmG8S6BGjzaajLmFaxhU86cvFCgHR2g7Kl2yD3e42jklTJrtJ1LC_tsPQI1gde19vthKP6AXWJP1Ui8STYLHozfFe9DENyP64UGcj7IaZDbSrFGZM0WfvVrQtbQf-RMH35kLDlHkkoOW5JNGeEypW-MNv4HBl4WwwuI3h8gKNSKHGdsSHyxB4eelWPTAEcfAOtszWeO1z4QqCDYAzqFRyksInPGaa5cM32517ljM4C3Pj-Wa5e4KdGIFxbIZycjTCoTZAjnkcyGEV4z0JLocn_iTZY_RqnAIkyoA4UvVqQdV6Me_WduB9ki1b3mkd5dwnQGinX8hy7ZQZNIM7jjwn315aziRRjYrp7fGvhq62Y4FfET0dc1sq6y3-2m2FZ-JTwtjlynwiJPVmzRlVfMJsl4IU4GfAu43OW2gfz_LpbseYQ-4BvGQ8CsORyPOqOuB0w=w780-h521-no?authuser=0" 
+        alt="a rainbow of veggies and fruit authorized by Happy Healthy Couple"
+        className="w-50">
+      </img>
+      <h1>Eat a Rainbow</h1>
       <p>Hi {username}! </p>
-      <p>uID is {uID} </p>
-
+      {/* <p>uID is {uID} </p> */}
+      <h3> Add color! Upload an image of your meal </h3>
       <Upload2 uID={uID} />
 
+      <h3> Have you been eating colorfully in the past 7 days? </h3>
       <Summary uID={uID} />
 
     </div>
