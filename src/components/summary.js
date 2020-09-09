@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import Color from './color';
+import './summary.css';
 import { PieChart } from 'react-minimal-pie-chart';
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
@@ -19,7 +20,7 @@ const Summary = ({uID}) => {
     axios
     .get(`https://us-central1-keen-boulder-286521.cloudfunctions.net/callWeeklyColors?message=${uID}`)
     .then((response) => {
-      console.log(response.data);
+      console.log(response.data.colors);
       setWeekly(response.data.colors);
     })
     .catch((error) => {
@@ -120,7 +121,7 @@ const Summary = ({uID}) => {
 
       {chart ? 
       <div>
-        <section className="w-50 container align-self-center justify-content-center align-items-center">
+        <section className="w-100 container align-self-center justify-content-center align-items-center my-5">
           <PieChart
             data={data}
             animate={true}
@@ -136,12 +137,12 @@ const Summary = ({uID}) => {
             viewBoxSize={[100, 100]}
             label={({ dataEntry }) => `${Math.round(dataEntry.percentage)} %`}
             labelStyle={{
-              fontSize: "0.2rem",
+              fontSize: "0.1rem",
               fontColor: "#FFFFFF",
             }}
           />
         </section>
-        <section className="recommend-box" >  
+        <section className="recommend-box my-5" >  
           <h3>Add more {minColor.title} to your plate!</h3>
           <h4>{moreFood}</h4>
           <h5>The best way to get more vitamins, minerals and nutrients is to eat a variety of colorful fruits and veggies.</h5>      
