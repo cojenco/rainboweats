@@ -4,8 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
-var firebase = require('firebase');
-var firebaseui = require('firebaseui');
+
 
 ReactDOM.render(
   <React.StrictMode>
