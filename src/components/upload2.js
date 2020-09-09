@@ -48,8 +48,8 @@ function Upload2 ({uID}) {
   
   return (
     <section className="container">
-      <label class="btn btn-outline-info btn-block upload-label-tag">
-        <span>Upload an image of your meal </span>
+      <label className="btn btn-outline-info btn-block upload-label-tag">
+        <span>Upload an image of your dish </span>
         <input type="file" className="upload-input-tag"></input>
       </label>
       

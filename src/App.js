@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import './App.css';
-import Upload from './components/upload'
 import Upload2 from './components/upload2'
 import Summary from './components/summary'
 var firebase = require('firebase');
@@ -61,18 +60,19 @@ function App() {
         alt="a rainbow of veggies and fruit authorized by Happy Healthy Couple"
         className="w-50">
       </img>
+
       <h1>Eat a Rainbow</h1>
       <p className="blue-font">Hi {username}! </p>
-      {/* <p>uID is {uID} </p> */}
+
       <div className="d-flex flex-column justify-content-center flex-wrap my-5">
         <div className="h-25 add-topic"> <h3> Add <br></br> color </h3> </div>
         <div className="h-25"><Upload2 uID={uID} /></div>
       </div>
+
       <div className="d-flex flex-column justify-content-center flex-wrap my-5">
         <div className="h-25"> <h3> Get <br></br> summary </h3> </div>
         <div className="h-75"> <span className="summary-line">Have you been eating colorfully in the past 7 days? </span><Summary uID={uID} /> </div>
       </div>
-
     </div>
   );
 }
