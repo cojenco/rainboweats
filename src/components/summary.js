@@ -104,43 +104,51 @@ const Summary = ({uID}) => {
   ]
 
   // FIND color category with least consumption, and this is the color to recommend more bites
-  const minColor = Object.keys(groups).reduce((a, b) => groups[a] < groups[b] ? a : b);
+  // const minColor = Object.keys(groups).reduce((a, b) => groups[a] < groups[b] ? a : b);
+  const minColor = data.reduce((a, b) => a.value < b.value ? a : b);
   console.log(minColor);
+  console.log(minColor.title);
 
-  const moreFood = COLORFOODS[minColor];
+  const moreFood = COLORFOODS[minColor.title];
  
 
 
   return (
     <section className="container">
-      <h3> Summary </h3>
+      <h3> Have you been eating colorfully in the past 7 days? </h3>
       <button onClick={onSummaryClick} > Get Summary </button>
 
       {chart ? 
-      <section className="w-50 container align-self-center justify-content-center align-items-center">
-        <PieChart
-          data={data}
-          animate={true}
-          animationDuration={500}
-          animationEasing="ease-out"
-          center={[50, 50]}
-          labelPosition={65}
-          lengthAngle={360}
-          lineWidth={65}
-          paddingAngle={0}
-          radius={50}
-          startAngle={0}
-          viewBoxSize={[100, 100]}
-          label={({ dataEntry }) => `${Math.round(dataEntry.percentage)} %`}
-          labelStyle={{
-            fontSize: "0.2rem",
-            fontColor: "#FFFFFF",
-          }}
-        />
+      <div>
+        <section className="w-50 container align-self-center justify-content-center align-items-center">
+          <PieChart
+            data={data}
+            animate={true}
+            animationDuration={500}
+            animationEasing="ease-out"
+            center={[50, 50]}
+            labelPosition={65}
+            lengthAngle={360}
+            lineWidth={65}
+            paddingAngle={0}
+            radius={50}
+            startAngle={0}
+            viewBoxSize={[100, 100]}
+            label={({ dataEntry }) => `${Math.round(dataEntry.percentage)} %`}
+            labelStyle={{
+              fontSize: "0.2rem",
+              fontColor: "#FFFFFF",
+            }}
+          />
+        </section>
+        <section className="recommend-box" >  
+          <h3>Add more {minColor.title} to your plate!</h3>
+          <h4>{moreFood}</h4>
+          <h5>The best way to get more vitamins, minerals and nutrients you need is to eat a variety of colorful fruits and veggies.</h5>      
+        </section>
+      </div>
 
-        <p>Recommend to eat more of {minColor}</p>
-        <p>{moreFood}</p>
-      </section> : "" }
+       : "" }
 
 
       {/* <section className="d-flex flex-wrap"> {allColorsResults} </section> */}
@@ -152,7 +160,10 @@ export default Summary;
 
 
 const COLORFOODS = {
-  'greenish': 'asparagus, avocados, broccoli, celery, green peppers, kale, kiwi, peas, spinach, zucchini',
+  'Red & Pink': 'apples, beets, cherries, grapefruit, pomegranates, red radishes, red peppers, tomatoes',
+  'Orange & Yellow': 'apricots, carrots, corn, lemons, oranges, pumpkins, squash, tangerines, yams',
+  'GREEN': 'asparagus, avocados, broccoli, celery, green peppers, kale, kiwi, peas, spinach, zucchini',
+  'BLUE & PURPLE': 'blackberries, blueberries, eggplant, grapes, plums, purple onions, red cabbage, red onions',
   // 'greenish': ['asparagus', 'avocados', 'broccoli', 'celery', 'green peppers', 'kale', 'kiwi', 'peas', 'spinach', 'zucchini'],
-  'bluePurple': ['blackberries', 'blueberries', 'eggplant', 'grapes', 'plums', 'purple onions', 'red cabbage', 'red onions']
+  // 'bluePurple': ['blackberries', 'blueberries', 'eggplant', 'grapes', 'plums', 'purple onions', 'red cabbage', 'red onions']
 }
