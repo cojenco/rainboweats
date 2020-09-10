@@ -161,7 +161,7 @@ const Summary = ({uID}) => {
         </section>
       </div>
 
-       : <p className="my-5"> {summaryMessage} </p> }
+       : <p className="my-3"> {summaryMessage} </p> }
 
 
       {/* <section className="d-flex flex-wrap"> {allColorsResults} </section> */}

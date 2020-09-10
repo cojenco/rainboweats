@@ -1,11 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
 import './upload2.css';
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 function Upload2 ({uID}) {
   const timestamp = Date.now();
-  console.log (`this is timestamp ${timestamp}`);
+  const [upload, setUpload] = useState(false);
+  const [uploadMessage, setUploadMessage] = useState('');
 
   const onUploadClick = (event) => {
     const preview = document.querySelector('img');
@@ -34,6 +35,7 @@ function Upload2 ({uID}) {
         .post('https://us-central1-keen-boulder-286521.cloudfunctions.net/testNode1', params)
         .then((response) => {
           console.log(response.data);
+          setUploadMessage(`${file.name} successfully uploaded`);
         })
         .catch((error) => {
           console.log(error.message);
@@ -45,8 +47,10 @@ function Upload2 ({uID}) {
       const uint8View = new Uint8Array(file);
       console.log('uint8View');
       console.log(uint8View);
-    } else {
-      console.log("No file chosen");
+    } else if (!uID) {
+      setUploadMessage('You must login via Google first');
+    } else if (!file) {
+      setUploadMessage('No file chosen');
     }
   }
 
@@ -59,6 +63,7 @@ function Upload2 ({uID}) {
       </label>
       
       <button onClick={onUploadClick} className="btn btn-info btn-block"> UPLOAD </button>
+      <p className="my-3"> {uploadMessage} </p>
     </section>
   );
 }
