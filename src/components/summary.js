@@ -13,27 +13,33 @@ const Summary = ({uID}) => {
   
 
   const onSummaryClick = (event) => {
-    console.log('clicked requesting summary');
-    const params = {
-      'message': uID
-    };
-
-    axios
-    .get(`https://us-central1-keen-boulder-286521.cloudfunctions.net/callWeeklyColors?message=${uID}`)
-    .then((response) => {
-      console.log(response.data.colors);
-      setWeekly(response.data.colors);
-
-      if (response.data.colors.length === 0) {
-        setSummaryMessage('No rainbow in sight. Please upload your daily meals first.')
-        setChart(false)
-      } else {
-        setChart(true);
+    if (uID) {
+      console.log('clicked requesting summary');
+      const params = {
+        'message': uID
       };
-    })
-    .catch((error) => {
-      console.log(error.message);
-    });
+
+      axios
+      .get(`https://us-central1-keen-boulder-286521.cloudfunctions.net/callWeeklyColors?message=${uID}`)
+      .then((response) => {
+        console.log(response.data.colors);
+        setWeekly(response.data.colors);
+
+        if (response.data.colors.length === 0) {
+          setSummaryMessage('No rainbow in sight. Please upload your daily meals first.')
+          setChart(false)
+        } else {
+          setChart(true);
+        };
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+    } else {
+      console.log('You must login via Google first')
+      setSummaryMessage('You must login via Google first')
+      setChart(false)
+    }
   }
 
   let allColorsResults = weekly.sort((a, b) => b.red - a.red || a.green - b.green);

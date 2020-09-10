@@ -10,40 +10,45 @@ function Upload2 ({uID}) {
   const onUploadClick = (event) => {
     const preview = document.querySelector('img');
     const file = document.querySelector('input[type=file]').files[0];
-    const reader = new FileReader();
-    console.log('this is file');
-    console.log(file);
-    console.log(file.name);
-
-    reader.onload = function(e) {
-      console.log(e.target);
-      console.log('e.target.result');
-      console.log(e.target.result);
-      const fileInput = e.target.result.split(',')[1];
-      const params = {
-        'uID': uID,
-        'file': fileInput,
-        'imageName': `${timestamp}.jpg`,
-      };
-      console.log(params);
-
-      axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-      axios
-      .post('https://us-central1-keen-boulder-286521.cloudfunctions.net/testNode1', params)
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-    }
+    if (file && uID) {
+      console.log("hey hey")
+      const reader = new FileReader();
+      console.log('this is file');
+      console.log(file);
+      console.log(file.name);
   
-    const data = reader.readAsDataURL(file);
-    // const data = reader.readAsArrayBuffer(file);
-    const uint8View = new Uint8Array(file);
-    console.log('uint8View');
-    console.log(uint8View);
+      reader.onload = function(e) {
+        console.log(e.target);
+        console.log('e.target.result');
+        console.log(e.target.result);
+        const fileInput = e.target.result.split(',')[1];
+        const params = {
+          'uID': uID,
+          'file': fileInput,
+          'imageName': `${timestamp}.jpg`,
+        };
+        console.log(params);
+  
+        axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+        axios
+        .post('https://us-central1-keen-boulder-286521.cloudfunctions.net/testNode1', params)
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+      }
+    
+      const data = reader.readAsDataURL(file);
+      // const data = reader.readAsArrayBuffer(file);
+      const uint8View = new Uint8Array(file);
+      console.log('uint8View');
+      console.log(uint8View);
+    } else {
+      console.log("No file chosen");
     }
+  }
 
   
   return (
