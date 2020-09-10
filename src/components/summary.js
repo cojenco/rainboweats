@@ -22,7 +22,7 @@ const Summary = ({uID}) => {
       axios
       .get(`https://us-central1-keen-boulder-286521.cloudfunctions.net/callWeeklyColors?message=${uID}`)
       .then((response) => {
-        console.log(response.data.colors);
+        // console.log(response.data.colors);
         setWeekly(response.data.colors);
 
         if (response.data.colors.length === 0) {
@@ -36,8 +36,7 @@ const Summary = ({uID}) => {
         console.log(error.message);
       });
     } else {
-      console.log('You must login via Google first')
-      setSummaryMessage('You must login via Google first')
+      setSummaryMessage('Please sign in with Google pop-up first')
       setChart(false)
     }
   }
@@ -77,7 +76,6 @@ const Summary = ({uID}) => {
 
     hues.push(h.toFixed());
   }
-  console.log(hues);
 
   // CATEGORIZING COLORS into Red & Pink, Orange& Yellow, Green, Blue& Purple
   // CATEGORIZING COLORS BASED ON HUE (their position in the color wheel)
@@ -106,8 +104,8 @@ const Summary = ({uID}) => {
       groups.redPink += 1;
     }
   }
-  console.log('color groups');
-  console.log(groups);
+  // console.log('color groups');
+  // console.log(groups);
 
   const data = [
     { title: 'RED & PINK', value: groups.redPink, color: '#ff6f57' },
@@ -119,16 +117,13 @@ const Summary = ({uID}) => {
   // FIND color category with least consumption, and this is the color to recommend more bites
   // const minColor = Object.keys(groups).reduce((a, b) => groups[a] < groups[b] ? a : b);
   const minColor = data.reduce((a, b) => a.value < b.value ? a : b);
-  console.log(minColor);
-  console.log(minColor.title);
-
   const moreFood = COLORFOODS[minColor.title];
  
 
 
   return (
     <section className="container">
-      {/* <h3> Have you been eating colorfully in the past 7 days? </h3> */}
+
       <button onClick={onSummaryClick} className="btn btn-info btn-block"> SUMMARY </button>
 
       {chart ? 

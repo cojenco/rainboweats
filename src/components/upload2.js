@@ -48,7 +48,7 @@ function Upload2 ({uID}) {
       console.log('uint8View');
       console.log(uint8View);
     } else if (!uID) {
-      setUploadMessage('You must login via Google first');
+      setUploadMessage('Please sign in with Google pop-up first');
     } else if (!file) {
       setUploadMessage('No file chosen');
     }
