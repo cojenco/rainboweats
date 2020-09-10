@@ -11,17 +11,18 @@ function Upload2 ({uID}) {
   const onUploadClick = (event) => {
     const preview = document.querySelector('img');
     const file = document.querySelector('input[type=file]').files[0];
-    if (file && uID) {
+    if (upload && uID) {
       console.log("hey hey")
       const reader = new FileReader();
       console.log('this is file');
       console.log(file);
       console.log(file.name);
+      const data = reader.readAsDataURL(file);
+      // const data = reader.readAsArrayBuffer(file);
+      // const uint8View = new Uint8Array(file);
   
       reader.onload = function(e) {
-        console.log(e.target);
-        console.log('e.target.result');
-        console.log(e.target.result);
+        // console.log(e.target.result);
         const fileInput = e.target.result.split(',')[1];
         const params = {
           'uID': uID,
@@ -41,25 +42,29 @@ function Upload2 ({uID}) {
           console.log(error.message);
         });
       }
-    
-      const data = reader.readAsDataURL(file);
-      // const data = reader.readAsArrayBuffer(file);
-      const uint8View = new Uint8Array(file);
-      console.log('uint8View');
-      console.log(uint8View);
+
+      setUpload(false);
+
     } else if (!uID) {
       setUploadMessage('Please sign in with Google pop-up first');
-    } else if (!file) {
+    } else if (!upload) {
       setUploadMessage('No file chosen');
     }
-  }
+  };
+
+  
+  const onUploadChange = (event) => {
+    event.preventDefault();
+    setUpload(true);
+    setUploadMessage('File chosen');
+  };
 
   
   return (
     <section className="container">
       <label className="btn btn-outline-info btn-block upload-label-tag">
         <span>Upload an image of your dish </span>
-        <input type="file" className="upload-input-tag"></input>
+        <input type="file" className="upload-input-tag" onChange={onUploadChange} ></input>
       </label>
       
       <button onClick={onUploadClick} className="btn btn-info btn-block"> UPLOAD </button>
