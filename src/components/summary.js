@@ -9,7 +9,8 @@ const Summary = ({uID}) => {
   const timestamp = Date.now();
   const [weekly, setWeekly] = useState([]);
   const [chart, setChart] = useState(false);
-
+  const [summaryMessage, setSummaryMessage] = useState('');
+  
 
   const onSummaryClick = (event) => {
     console.log('clicked requesting summary');
@@ -22,12 +23,17 @@ const Summary = ({uID}) => {
     .then((response) => {
       console.log(response.data.colors);
       setWeekly(response.data.colors);
+
+      if (response.data.colors.length === 0) {
+        setSummaryMessage('No rainbow in sight. Please upload your daily meals first.')
+        setChart(false)
+      } else {
+        setChart(true);
+      };
     })
     .catch((error) => {
       console.log(error.message);
     });
-
-    setChart(true);
   }
 
   let allColorsResults = weekly.sort((a, b) => b.red - a.red || a.green - b.green);
@@ -149,7 +155,7 @@ const Summary = ({uID}) => {
         </section>
       </div>
 
-       : "" }
+       : <p className="my-5"> {summaryMessage} </p> }
 
 
       {/* <section className="d-flex flex-wrap"> {allColorsResults} </section> */}
