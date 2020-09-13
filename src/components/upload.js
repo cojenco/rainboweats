@@ -124,6 +124,8 @@ class Upload extends React.Component {
     if (!this.state.isSignedIn) {
       return (
         <div>
+          <h3>Add colors to your diet for good nutrition!</h3>
+          <h3>Upload photos of your daily meals and track how colorful you've been eating</h3>
           <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()}/>
         </div>
       );

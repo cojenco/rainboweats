@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import './App.css';
+import Upload from './components/upload'
 import Upload2 from './components/upload2'
 import Summary from './components/summary'
 import rainbowImage from './rainbowFood.jpg'
+import SignInScreen from './components/upload';
 var firebase = require('firebase');
 
 function App() {
@@ -28,23 +30,23 @@ function App() {
   const [uID, setuID] = useState('')
   const [username, setUsername] = useState('')
 
-  var provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithPopup(provider).then(function(result) {
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    var token = result.credential.accessToken;
-    // The signed-in user info.
-    var user = result.user;
-    // console.log(user);
-    // console.log(result.additionalUserInfo.profile)
-    console.log(result.additionalUserInfo.profile.id)
-    setuID(result.additionalUserInfo.profile.id)
-    setUsername(result.additionalUserInfo.profile.given_name)
-  }).catch(function(error) {
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    var email = error.email;
-    var credential = error.credential;
-  });
+  // var provider = new firebase.auth.GoogleAuthProvider();
+  // firebase.auth().signInWithPopup(provider).then(function(result) {
+  //   // This gives you a Google Access Token. You can use it to access the Google API.
+  //   var token = result.credential.accessToken;
+  //   // The signed-in user info.
+  //   var user = result.user;
+  //   // console.log(user);
+  //   // console.log(result.additionalUserInfo.profile)
+  //   console.log(result.additionalUserInfo.profile.id)
+  //   setuID(result.additionalUserInfo.profile.id)
+  //   setUsername(result.additionalUserInfo.profile.given_name)
+  // }).catch(function(error) {
+  //   var errorCode = error.code;
+  //   var errorMessage = error.message;
+  //   var email = error.email;
+  //   var credential = error.credential;
+  // });
 
   
   return (
@@ -57,6 +59,7 @@ function App() {
       </img>
 
       <h1>Eat a Rainbow</h1>
+      <Upload />
       <p className="blue-font">Hi {username}! </p>
 
       <div className="d-flex flex-column justify-content-center flex-wrap my-5">
