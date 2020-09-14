@@ -48,6 +48,14 @@ function App() {
   //   var credential = error.credential;
   // });
 
+  const getUsername = (name) => {
+    setUsername(name);
+  };
+
+  const getID = (id) => {
+    setuID(id);
+  };
+
   
   return (
     <div className="App">
@@ -59,7 +67,7 @@ function App() {
       </img>
 
       <h1>Eat a Rainbow</h1>
-      <Upload />
+      <Upload name="World" getUsername={getUsername} getID={getID} />
       <p className="blue-font">Hi {username}! </p>
 
       <div className="d-flex flex-column justify-content-center flex-wrap my-5">
