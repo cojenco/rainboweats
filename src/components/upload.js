@@ -120,16 +120,33 @@ class Upload extends React.Component {
     this.unregisterAuthObserver();
   }
 
+  componentDidUpdate() {
+    // id = firebase.auth().currentUser.uid;
+    if (this.state.isSignedIn) {
+      console.log(firebase.auth().currentUser);
+      console.log(firebase.auth().currentUser.uid);
+      this.props.getID(firebase.auth().currentUser.uid);
+      this.props.getUsername(firebase.auth().currentUser.displayName);
+    }
+  }
+
+
   render() {
     if (!this.state.isSignedIn) {
       return (
         <div>
-          <h3>Add colors to your diet for good nutrition!</h3>
+          <h3>Hello {this.props.name}! Add colors to your diet for good nutrition!</h3>
           <h3>Upload photos of your daily meals and track how colorful you've been eating</h3>
           <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()}/>
         </div>
       );
     }
+    // const name = firebase.auth().currentUser.displayName;
+    // this.props.getUsername(name);
+    // console.log(firebase.auth().currentUser);
+    // const id = firebase.auth().currentUser.uid;
+    // console.log(id);
+    // this.props.getID(id);
     return (
       <div>
         <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
