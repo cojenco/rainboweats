@@ -1,23 +1,18 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import Color from './color';
 import './summary.css';
 import { PieChart } from 'react-minimal-pie-chart';
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 const Summary = ({uID}) => {
-  const timestamp = Date.now();
+
   const [weekly, setWeekly] = useState([]);
   const [chart, setChart] = useState(false);
   const [summaryMessage, setSummaryMessage] = useState('');
   
-
   const onSummaryClick = (event) => {
     if (uID) {
       console.log('clicked requesting summary');
-      const params = {
-        'message': uID
-      };
 
       axios
       .get(`https://us-central1-keen-boulder-286521.cloudfunctions.net/callWeeklyColors?message=${uID}`)
@@ -41,14 +36,6 @@ const Summary = ({uID}) => {
     }
   }
 
-  let allColorsResults = weekly.sort((a, b) => b.red - a.red || a.green - b.green);
-  allColorsResults = weekly.map((color) => {
-    const key = Date.now();
-    return (
-      <Color key={key} red={color.red} green={color.green} blue={color.blue} fraction={color.pixel_fraction} />
-    );
-  })
-
   // Converting RGB to Hue 0~360 degree to better categorize colors
   // Reference: https://medium.com/@donatbalipapp/colours-maths-90346fb5abda
   let hues = [];
@@ -57,7 +44,7 @@ const Summary = ({uID}) => {
     const r = color.red / 255;
     const g = color.green / 255;
     const b = color.blue / 255;
-    const fraction = color.pixel_fraction.toFixed();
+    // const fraction = color.pixel_fraction.toFixed();
     let h = 0;
 
     if (r >= g && g >= b) {
@@ -104,8 +91,6 @@ const Summary = ({uID}) => {
       groups.redPink += 1;
     }
   }
-  // console.log('color groups');
-  // console.log(groups);
 
   const data = [
     { title: 'RED & PINK', value: groups.redPink, color: '#ff6f57' },
@@ -115,11 +100,9 @@ const Summary = ({uID}) => {
   ]
 
   // FIND color category with least consumption, and this is the color to recommend more bites
-  // const minColor = Object.keys(groups).reduce((a, b) => groups[a] < groups[b] ? a : b);
   const minColor = data.reduce((a, b) => a.value < b.value ? a : b);
   const moreFood = COLORFOODS[minColor.title];
  
-
 
   return (
     <section className="container">
@@ -158,8 +141,6 @@ const Summary = ({uID}) => {
 
        : <p className="my-3"> {summaryMessage} </p> }
 
-
-      {/* <section className="d-flex flex-wrap"> {allColorsResults} </section> */}
     </section>
   );
 }
