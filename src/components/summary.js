@@ -110,8 +110,8 @@ const Summary = ({uID}) => {
   const data = [
     { title: 'RED & PINK', value: groups.redPink, color: '#ff6f57' },
     { title: 'ORANGE & YELLOW', value: groups.orangeYellow, color: '#FDD218' },
-    { title: 'GREEN', value: groups.greenish, color: '#A7D13C' },
     { title: 'BLUE & PURPLE', value: groups.bluePurple, color: '#b367b1' },
+    { title: 'GREEN', value: groups.greenish, color: '#A7D13C' },
   ]
 
   // FIND color category with least consumption, and this is the color to recommend more bites
