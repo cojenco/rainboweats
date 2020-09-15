@@ -9,7 +9,6 @@ function Upload2 ({uID}) {
   const [uploadMessage, setUploadMessage] = useState('');
 
   const onUploadClick = (event) => {
-    const preview = document.querySelector('img');
     const file = document.querySelector('input[type=file]').files[0];
     if (upload && uID) {
       console.log("hey hey")
