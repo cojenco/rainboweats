@@ -39,8 +39,6 @@ class SignIn extends React.Component {
   // Use callback function from props to sendback uID and username
   componentDidUpdate() {
     if (this.state.isSignedIn) {
-      console.log(firebase.auth().currentUser);
-      console.log(firebase.auth().currentUser.uid);
       this.props.getID(firebase.auth().currentUser.uid);
       this.props.getUsername(firebase.auth().currentUser.displayName);
     }
@@ -59,10 +57,7 @@ class SignIn extends React.Component {
     }
 
     return (
-      <div>
-        {/* <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p> */}
-        {/* <a onClick={() => firebase.auth().signOut()}>Sign-out</a> */}
-      </div>
+      <div></div>
     );
   }
 }
