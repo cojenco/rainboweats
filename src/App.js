@@ -4,7 +4,7 @@ import Upload from './components/upload'
 import Upload2 from './components/upload2'
 import Summary from './components/summary'
 import rainbowImage from './rainbowFood.jpg'
-import SignInScreen from './components/upload';
+import SignIn from './components/signin';
 var firebase = require('firebase');
 
 function App() {
@@ -67,7 +67,7 @@ function App() {
       </img>
 
       <h1>Eat a Rainbow</h1>
-      <Upload name="World" getUsername={getUsername} getID={getID} />
+      <SignIn getUsername={getUsername} getID={getID} />
       <p className="blue-font">Hi {username}! </p>
 
       <div className="d-flex flex-column justify-content-center flex-wrap my-5">

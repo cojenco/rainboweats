@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase';
 
@@ -9,9 +9,6 @@ class SignIn extends React.Component {
   state = {
     isSignedIn: false // Local signed-in state.
   };
-  // const [uID, setuID] = useState('');
-  // const [username, setUsername] = useState('');
-
 
   // Configure FirebaseUI.
   uiConfig = {
@@ -39,6 +36,17 @@ class SignIn extends React.Component {
     this.unregisterAuthObserver();
   }
 
+  // Use callback function from props to sendback uID and username
+  componentDidUpdate() {
+    if (this.state.isSignedIn) {
+      console.log(firebase.auth().currentUser);
+      console.log(firebase.auth().currentUser.uid);
+      this.props.getID(firebase.auth().currentUser.uid);
+      this.props.getUsername(firebase.auth().currentUser.displayName);
+    }
+  }
+
+
   render() {
     if (!this.state.isSignedIn) {
       return (
@@ -49,10 +57,11 @@ class SignIn extends React.Component {
         </div>
       );
     }
+
     return (
       <div>
-        <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
-        <a onClick={() => firebase.auth().signOut()}>Sign-out</a>
+        {/* <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p> */}
+        {/* <a onClick={() => firebase.auth().signOut()}>Sign-out</a> */}
       </div>
     );
   }
